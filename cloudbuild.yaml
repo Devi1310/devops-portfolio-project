@@ -1,0 +1,21 @@
+steps:
+  # Step 1 - Build Docker image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'devidrisha/devi-devops-app:$BUILD_ID', '.']
+
+  # Step 2 - Push to Docker Hub
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'devidrisha/devi-devops-app:$BUILD_ID']
+
+  # Step 3 - Deploy to Kubernetes
+  - name: 'gcr.io/cloud-builders/kubectl'
+    args:
+      - 'set'
+      - 'image'
+      - 'deployment/devops-app'
+      - 'devops-app=devidrisha/devi-devops-app:$BUILD_ID'
+    env:
+      - 'CLOUDSDK_COMPUTE_ZONE=europe-west3-a'
+      - 'CLOUDSDK_CONTAINER_CLUSTER=devops-gke-cluster'
+
+timeout: '1200s'
