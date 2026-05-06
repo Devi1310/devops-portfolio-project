@@ -1,35 +1,24 @@
 steps:
   # Step 1 - Build Docker image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'devidrisha/devi-devops-app:$BUILD_ID', '.']
+    args: ['build', '-t', 'gcr.io/eighth-orbit-391014/devi-devops-app:$BUILD_ID', '.']
 
-  # Step 2 - Login to Docker Hub
+  # Step 2 - Push to GCR
   - name: 'gcr.io/cloud-builders/docker'
-    entrypoint: 'bash'
-    args:
-      - '-c'
-      - |
-        docker login -u devidrisha -p $$DOCKERHUB_PASSWORD
-    secretEnv: ['DOCKERHUB_PASSWORD']
+    args: ['push', 'gcr.io/eighth-orbit-391014/devi-devops-app:$BUILD_ID']
 
-  # Step 3 - Push to Docker Hub
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'devidrisha/devi-devops-app:$BUILD_ID']
-
-  # Step 4 - Deploy to Kubernetes
+  # Step 3 - Deploy to Kubernetes
   - name: 'gcr.io/cloud-builders/kubectl'
     args:
       - 'set'
       - 'image'
       - 'deployment/devops-app'
-      - 'devops-app=devidrisha/devi-devops-app:$BUILD_ID'
+      - 'devops-app=gcr.io/eighth-orbit-391014/devi-devops-app:$BUILD_ID'
     env:
       - 'CLOUDSDK_COMPUTE_ZONE=europe-west3-a'
       - 'CLOUDSDK_CONTAINER_CLUSTER=devops-gke-cluster'
 
-availableSecrets:
-  secretManager:
-  - versionName: projects/85860887722/secrets/dockerhub-password/versions/latest
-    env: 'DOCKERHUB_PASSWORD'
+images:
+  - 'gcr.io/eighth-orbit-391014/devi-devops-app:$BUILD_ID'
 
 timeout: '1200s'
