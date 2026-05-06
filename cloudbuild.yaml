@@ -3,11 +3,20 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'devidrisha/devi-devops-app:$BUILD_ID', '.']
 
-  # Step 2 - Push to Docker Hub
+  # Step 2 - Login to Docker Hub
+  - name: 'gcr.io/cloud-builders/docker'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        docker login -u devidrisha -p $$DOCKERHUB_PASSWORD
+    secretEnv: ['DOCKERHUB_PASSWORD']
+
+  # Step 3 - Push to Docker Hub
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'devidrisha/devi-devops-app:$BUILD_ID']
 
-  # Step 3 - Deploy to Kubernetes
+  # Step 4 - Deploy to Kubernetes
   - name: 'gcr.io/cloud-builders/kubectl'
     args:
       - 'set'
@@ -17,5 +26,10 @@ steps:
     env:
       - 'CLOUDSDK_COMPUTE_ZONE=europe-west3-a'
       - 'CLOUDSDK_CONTAINER_CLUSTER=devops-gke-cluster'
+
+availableSecrets:
+  secretManager:
+  - versionName: projects/85860887722/secrets/dockerhub-password/versions/latest
+    env: 'DOCKERHUB_PASSWORD'
 
 timeout: '1200s'
