@@ -1,23 +1,56 @@
 # DevOps Portfolio Project — Devi Jayavelu
 
-## About
-End-to-end DevOps project demonstrating containerization,
-infrastructure-as-code, CI/CD, and observability.
+### Devi Jayavelu | Frankfurt, Germany
+A complete end-to-end DevOps pipeline built on GCP and AWS.
 
-## Stack
-- Docker — containerization
-- Kubernetes (GKE) — orchestration
-- Terraform — infrastructure as code
-- Jenkins — CI/CD pipeline
-- Prometheus + Grafana — monitoring
-- GCP + AWS — cloud platforms
+## Architecture
 
-## Progress
-- [x] Day 2 — Dockerized Flask app
-- [ ] Day 3 — Terraform on GCP
-- [ ] Day 4 — Kubernetes deployment
-- [ ] Day 5 — Jenkins CI/CD
-- [ ] Day 6 — Prometheus + Grafana
+  GitHub Code 
+  ↓ 
+  Cloud Build CI/CD Pipeline 
+  ↓ 
+  Google Container Registry 
+  ↓ 
+  GKE Kubernetes Cluster 
+  ↓ 
+  Live App on Public IP 🌍 
+  ↓ 
+  Prometheus + Grafana Monitoring  
 
-## Live Image
-docker pull devidrisha/devi-devops-app:v1
+  ## Tech Stack
+| Technology | Usage |
+|---|---|
+| Docker | Containerization |
+| Kubernetes (GKE) | Container Orchestration |
+| Terraform | Infrastructure as Code |
+| Google Cloud Build | CI/CD Pipeline |
+| Prometheus + Grafana | Monitoring & Observability |
+| AWS (EC2, VPC, S3, IAM) | Multi-cloud Infrastructure |
+| Jenkins | CI/CD Pipeline |
+| Git/GitHub | Version Control |
+
+## Projects
+
+### GCP Infrastructure
+- VPC, Subnet, Firewall provisioned with Terraform
+- GKE cluster with Kubernetes Deployments, Services, ConfigMaps
+- Cloud Build CI/CD pipeline — automated build, push, deploy
+- Prometheus + Grafana monitoring stack via Helm
+
+### AWS Infrastructure  
+- VPC with public/private subnets
+- EC2 t2.micro with IAM role (least-privilege)
+- S3 bucket with versioning
+- CloudWatch CPU alarm
+
+## Certifications
+- GCP Associate Cloud Engineer
+- AWS Cloud Practitioner
+- HashiCorp Terraform Associate
+- Docker Foundations
+- Containers & Kubernetes Essentials (IBM)
+
+## Contact
+- Email: devi.drisha13@gmail.com
+- LinkedIn: linkedin.com/in/devi-jayavelu
+- Location: Frankfurt, Germany
