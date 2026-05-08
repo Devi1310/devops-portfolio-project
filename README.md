@@ -1,6 +1,4 @@
 # DevOps Projects
-
-### Devi Jayavelu | Frankfurt, Germany
 A complete end-to-end DevOps pipeline built on GCP and AWS.
 
 • Containerized a Python Flask application using Docker and pushed to Docker Hub and Google Container Registry
@@ -10,8 +8,7 @@ A complete end-to-end DevOps pipeline built on GCP and AWS.
 
 ## Architecture
 
-  GitHub Code| Cloud Build CI/CD Pipeline | Google Container Registry | GKE Kubernetes Cluster | Live App on Public IP 🌍 
-  | Prometheus + Grafana Monitoring  
+  GitHub Code| Cloud Build CI/CD Pipeline | Google Container Registry | GKE Kubernetes Cluster | Live App on Public IP | Prometheus + Grafana Monitoring  
 
   ## Tech Stack
 | Technology | Usage |
